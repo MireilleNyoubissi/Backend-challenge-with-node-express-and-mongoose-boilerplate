@@ -6,10 +6,9 @@ const mongoose = require("mongoose");
 const uri = process.env.MONGO_URI;
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
 //parse application/x-www-form-urlencoded
-app.use((req, res) => {
-    bodyParser.urlencoded({ extended: false });
-});
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
@@ -69,19 +68,19 @@ app.get("/:word/echo", (req, res) => {
 
 /* Get input from client. Query parameter*/
 
-app.get("/name", (req, res)=> {
+app.get("/name", (req, res) => {
     const { first: firstName, last: lastName } = req.query;
     res.json({
        name: `${firstName} ${lastName}` 
     })
-})
+});
 
 /*Get data from post */
 
 app.post("/name", (req, res) => {
     const { first: firstName, last: lastName } = req.body;
     res.json({
-      name: `${firstName} ${lastName}`,
+      name: `${firstName} ${lastName}`
     });
 }); 
 
